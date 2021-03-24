@@ -51,29 +51,32 @@ const Home: React.FC = () => {
     return (
         <HomeContainer>
             <div className="categories">
-                <ul>
+                
                 { categoriesJoke.map( (joke, index) => (
-                    <li key={index} onClick={ () => handleJokeByCategory(joke) }>{joke}</li>
+                    <span className="individual" key={index} onClick={ () => handleJokeByCategory(joke) }>{joke}</span>
                 ))}
-                </ul>
+                
             </div>
             <div>
                 <img src={categorySelected?.icon_url} alt={categorySelected?.value}/>
                 <h3>{categorySelected?.value}</h3>
             </div>
 
-            <h2>Find Joke</h2>
+            <h1>Chuck 1.0</h1>
 
             <div className="input-group">
-                <input type="text" onChange={ e => setSearchJoke(e.target.value)} />
-                <button type="submit" onClick={handleJokes}> Find joke</button>
+                <input type="text" placeholder="Insira um tema" onChange={ e => setSearchJoke(e.target.value)} />
+                <button type="submit" onClick={handleJokes}> Procurar</button>
             </div>
-            <p>Find results for:</p>
+
+
+            <p><h1>Resultados encontrados para <span className="span-search">{searchJoke}</span></h1> </p>
             <div className="joker">
                 { isLoad ? <img src={LoadGif} alt="load"/> : resultSearch.map( result => (
-                    <div key={result.id}>
+                    <div className="jokerCard" key={result.id}>
                         <img src={result.icon_url} alt={result.value}/>
                         <h3>{result.value}</h3>
+                        
                     </div>
                 )) }
 
